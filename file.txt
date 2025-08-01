@@ -1,0 +1,3 @@
+Linux is great
+	Shelll is powerfull
+Bash is fun
