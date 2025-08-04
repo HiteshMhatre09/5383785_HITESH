@@ -1,5 +1,0 @@
-Alice 28 55000
-Bob 26 4200
-Charlie 32  68000
-David 29 39000
-Eva 30 72000
