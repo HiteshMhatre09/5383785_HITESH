@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Stack {
+    int* arr;
+    int top;
+    int size;
+} Stack;
+
+Stack* createStack(int size) {
+    Stack* s = malloc(sizeof(Stack));
+    s->arr = malloc(size * sizeof(int));
+    s->top = -1;
+    s->size = size;
+    return s;
+}
+
+void push(Stack* s, int val) {
+    s->arr[++s->top] = val;
+}
+
+int pop(Stack* s) {
+    return s->arr[s->top--];
+}
+
+int peek(Stack* s) {
+    return s->arr[s->top];
+}
+
+int isEmpty(Stack* s) {
+    return s->top == -1;
+}
+
+int main() {
+    int q;
+    scanf("%d", &q);
+    Stack* s1 = createStack(q);
+    Stack* s2 = createStack(q);
+    for (int i = 0; i < q; i++) {
+        int type;
+        scanf("%d", &type);
+        if (type == 1) {
+            int val;
+            scanf("%d", &val);
+            push(s1, val);
+        } else if (type == 2) {
+            if (isEmpty(s2)) {
+                while (!isEmpty(s1)) push(s2, pop(s1));
+            }
+            pop(s2);
+        } else if (type == 3) {
+            if (isEmpty(s2)) {
+                while (!isEmpty(s1)) push(s2, pop(s1));
+            }
+            printf("%d\n", peek(s2));
+        }
+    }
+    free(s1->arr);
+    free(s2->arr);
+    free(s1);
+    free(s2);
+    return 0;
+}
+
